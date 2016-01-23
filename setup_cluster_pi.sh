@@ -34,8 +34,12 @@ pi_name="pi$pi_number"
 echo "Installing system software and updates"
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install vim git-core mpich2 xboxdrv libglew-dev sshpass libav-tools python-smbus i2c-tools rpi.gpio
-
+sudo apt-get -y install vim sshpass
+# sudo apt-get -y install mpich2 # mpi parallel computing
+# sudo apt-get -y install libav-tools # audio and video
+sudo apt-get -y install python-smbus i2c-tools rpi.gpio # diodes ans gpio
+# git core is supposed to be install in raspian
+# sudo apt-get -y install git-core #
 
 echo "Installing python packages"
 
