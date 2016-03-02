@@ -16,3 +16,6 @@ def get_temperature():
     output = subprocess.check_output(cmd, shell=True)
     regex_number = re.compile("\d+\.\d+")
     return float(re.search(regex_number, output).group())
+
+if __name__ == "__main__":
+    get_temperature()
