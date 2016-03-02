@@ -18,11 +18,10 @@ import datetime
 import time
 import RPi.GPIO as GPIO
 import logging
-from pprint import pprint
+import pprint
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("predict-weather")
-
 
 api_key = os.environ.get("FORECAST_API_KEY")
 paris_lat = 48.8534100
