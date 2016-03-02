@@ -23,6 +23,7 @@ import pprint
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("predict-weather")
 
+
 api_key = os.environ.get("FORECAST_API_KEY")
 paris_lat = 48.8534100
 paris_lng = 2.3488000
@@ -57,7 +58,8 @@ GPIO.setup(18, GPIO.OUT)
 while True:
     pred = get_weather_now()
     # light up red light if it is raining
-    if pred['precipProbability'] > 90:
+    if pred['precipProbability'] > 70:
+        logger.info("It is raining ...")
         GPIO.output(18, True)
     else:
         GPIO.output(18, False)
