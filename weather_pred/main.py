@@ -48,7 +48,7 @@ def get_weather_now(api_key=api_key, lat=paris_lat, long=paris_lng, verbose=True
         nb_remaining_calls))
     pred = forecast.currently().d
     if verbose:
-        pprint(pred)
+        logger.info(pprint.pformat(pred))
     return pred
 
 # Set up GPIO
