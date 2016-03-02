@@ -18,4 +18,4 @@ def get_temperature():
     return float(re.search(regex_number, output).group())
 
 if __name__ == "__main__":
-    get_temperature()
+    print("Temperature in Celsius :{}".format(get_temperature()))
