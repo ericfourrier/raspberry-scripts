@@ -20,8 +20,15 @@ import RPi.GPIO as GPIO
 import logging
 import pprint
 
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger("predict-weather")
+logger = logging.getLogger()  # 'root' Logger
+console = logging.StreamHandler()  # logging to console
+csv_handler = logging.FileHandler('logs.csv')
+# csv
+template_log = '%(asctime)s,%(levelname)s,%(processName)s,%(filename)s,%(lineno)s,%(message)s'
+console.setFormatter(logging.Formatter(template_log))
+logger.addHandler(console)  # prints to console.
+logger.addHandler(csv_handler)  # save to csv gile
+logger.setLevel(logging.INFO)  # DEBUG or above
 
 
 api_key = os.environ.get("FORECAST_API_KEY")
@@ -43,8 +50,9 @@ def get_weather_now(api_key=api_key, lat=paris_lat, long=paris_lng, verbose=True
     current_time = datetime.datetime.now()
     forecast = forecastio.load_forecast(
         api_key, paris_lat, paris_lng, time=current_time)
-    nb_remaining_calls = API_RATE_LIMIT - int(forecast.response.headers['x-forecast-api-calls'])
-    logger.debug("Pulling data from  the api forecast.io, remaining calls : {}".format(
+    nb_remaining_calls = API_RATE_LIMIT - \
+        int(forecast.response.headers['x-forecast-api-calls'])
+    logger.info("Pulling data from  the api forecast.io, remaining calls : {}".format(
         nb_remaining_calls))
     pred = forecast.currently().d
     if verbose:
