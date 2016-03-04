@@ -67,7 +67,7 @@ GPIO.setup(18, GPIO.OUT)
 while True:
     pred = get_weather_now()
     # light up red light if it is raining
-    if pred['precipProbability'] > 70:
+    if pred['precipProbability'] > 0.7:
         logger.info("It is raining ...")
         GPIO.output(18, True)
     else:
