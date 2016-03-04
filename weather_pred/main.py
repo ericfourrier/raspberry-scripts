@@ -26,6 +26,7 @@ csv_handler = logging.FileHandler('logs.csv')
 # csv
 template_log = '%(asctime)s,%(levelname)s,%(processName)s,%(filename)s,%(lineno)s,%(message)s'
 console.setFormatter(logging.Formatter(template_log))
+csv_handler.setFormatter(logging.Formatter(template_log))
 logger.addHandler(console)  # prints to console.
 logger.addHandler(csv_handler)  # save to csv gile
 logger.setLevel(logging.INFO)  # DEBUG or above
@@ -71,4 +72,4 @@ while True:
         GPIO.output(18, True)
     else:
         GPIO.output(18, False)
-    time.sleep(60 * 30)
+    time.sleep(60 * 10)
