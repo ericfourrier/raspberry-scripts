@@ -8,6 +8,16 @@ Purpose : Get temperature of your rpi cluster via python
 
 import subprocess
 import re
+import logging
+
+import logging
+
+# logging.getLogger(type(self).__name__) if you have a lot of class
+logger = logging.getLogger("temperature")  # 'root' Logger
+console = logging.StreamHandler()  # logging to console
+template_log = '"%(asctime)s - %(name)s - %(levelname)s - %(message)s"'  # csv
+logger.addHandler(console)  # prints to console.
+logger.setLevel(logging.INFO)  # DEBUG or above
 
 
 def get_temperature():
@@ -17,5 +27,13 @@ def get_temperature():
     regex_number = re.compile("\d+\.\d+")
     return float(re.search(regex_number, output).group())
 
+
+def log_temperature(interval=0.5):
+    """ print Logs of temperature every 'interval' seconds """
+    while True:
+        temp = get_temperature()
+        logger.info("Temperature of the pi in Celsius : {}".format(temp))
+
+
 if __name__ == "__main__":
-    print("Temperature in Celsius :{}".format(get_temperature()))
+    log_temperature()
