@@ -9,8 +9,7 @@ Purpose : Get temperature of your rpi cluster via python
 import subprocess
 import re
 import logging
-
-import logging
+import time
 
 # logging.getLogger(type(self).__name__) if you have a lot of class
 logger = logging.getLogger("temperature")  # 'root' Logger
@@ -33,6 +32,7 @@ def log_temperature(interval=0.5):
     while True:
         temp = get_temperature()
         logger.info("Temperature of the pi in Celsius : {}".format(temp))
+        time.sleep(interval)
 
 
 if __name__ == "__main__":
