@@ -15,6 +15,7 @@ import time
 logger = logging.getLogger("temperature")  # 'root' Logger
 console = logging.StreamHandler()  # logging to console
 template_log = '"%(asctime)s - %(name)s - %(levelname)s - %(message)s"'  # csv
+console.setFormatter(logging.Formatter(template_log))
 logger.addHandler(console)  # prints to console.
 logger.setLevel(logging.INFO)  # DEBUG or above
 
